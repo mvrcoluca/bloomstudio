@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>BLOOM | Estudio de diseño digital</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+  <style>
+    :root { --coral:#ff6b5e; --tinta:#161616; --crema:#f4efe9; }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin:0; background:var(--crema); color:var(--tinta); font-family:'Jost', Helvetica, sans-serif; font-weight:300; }
+    img { display:block; max-width:100%; }
+    a { color:inherit; }
+
+    .aviso { background:var(--coral); color:white; text-align:center; font-size:12px; letter-spacing:2px; text-transform:uppercase; padding:8px; }
+
+    header { display:flex; justify-content:space-between; align-items:center; padding:18px 40px; position:sticky; top:0; background:var(--crema); z-index:10; border-bottom:1px solid rgba(0,0,0,.1); }
+    .logo { font-weight:400; letter-spacing:6px; text-decoration:none; }
+    nav a { font-size:12px; letter-spacing:2px; text-transform:uppercase; text-decoration:none; margin-left:28px; }
+    nav a:hover { color:var(--coral); }
+    .burger { display:none; flex-direction:column; justify-content:center; gap:6px; width:36px; height:36px; background:none; border:none; padding:6px; cursor:pointer; }
+    .burger span { display:block; height:2px; background:var(--tinta); transition:transform .3s; }
+    .burger.abierto span:first-child { transform:translateY(4px) rotate(45deg); }
+    .burger.abierto span:last-child { transform:translateY(-4px) rotate(-45deg); }
+
+    .hero { position:relative; min-height:88vh; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+    .hero h1 { position:absolute; margin:0; font-size:26vw; line-height:1; letter-spacing:-.04em; color:var(--coral); font-family:Helvetica, Arial, sans-serif; font-weight:900; }
+    .hero img { position:relative; width:min(46vw, 480px); transform-origin:50% 100%; filter:drop-shadow(0 25px 35px rgba(255,107,94,.3)); animation:florecer 2s ease-out both, ondular 12s ease-in-out 2s infinite; }
+    .hero p { position:absolute; bottom:24px; left:40px; font-size:12px; letter-spacing:2px; text-transform:uppercase; max-width:220px; }
+    .hero .scroll { left:auto; right:40px; }
+    @keyframes florecer { from { transform:scale(.4) rotate(-8deg); opacity:0; } to { transform:scale(1) rotate(0); opacity:1; } }
+    @keyframes ondular {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  33% { transform: translate(5px, -6px) rotate(1.2deg); }
+  66% { transform: translate(-5px, -3px) rotate(-1.2deg); }
+}
+
+    .cinta { background:var(--tinta); color:var(--crema); overflow:hidden; white-space:nowrap; padding:14px 0; }
+    .cinta div { display:inline-block; animation:correr 25s linear infinite; font-size:14px; letter-spacing:4px; text-transform:uppercase; }
+    @keyframes correr { to { transform:translateX(-50%); } }
+
+    section { padding:90px 40px; }
+    .etiqueta { font-size:12px; letter-spacing:3px; text-transform:uppercase; color:var(--coral); margin:0 0 40px; }
+
+    .servicio { display:flex; gap:40px; align-items:baseline; padding:28px 0; border-top:1px solid rgba(0,0,0,.2); transition:padding .3s, color .3s; }
+    .servicio:last-child { border-bottom:1px solid rgba(0,0,0,.2); }
+    .servicio:hover { padding-left:20px; color:var(--coral); }
+    .servicio span { font-size:14px; }
+    .servicio h2 { margin:0; font-size:clamp(28px, 5vw, 64px); font-weight:200; flex:1; }
+    .servicio p { margin:0; max-width:300px; font-size:14px; line-height:1.6; color:var(--tinta); }
+
+    .grilla { display:grid; grid-template-columns:repeat(4, 1fr); gap:24px 16px; }
+    .proyecto { overflow:hidden; }
+    .proyecto .foto { overflow:hidden; aspect-ratio:4/5; background:#ddd; }
+    .proyecto img { width:100%; height:100%; object-fit:cover; filter:grayscale(1); transition:transform .6s, filter .6s; }
+    .proyecto:hover img { transform:scale(1.06); filter:grayscale(0); }
+    .proyecto h3 { margin:12px 0 2px; font-size:13px; letter-spacing:1px; text-transform:uppercase; font-weight:400; }
+    .proyecto small { color:#777; font-size:12px; }
+
+    .nosotros p.oculto { font-size:clamp(24px, 4vw, 48px); line-height:1.25; max-width:1000px; margin:0; font-weight:200; }
+    .nosotros em { color:var(--coral); font-style:normal; }
+
+    footer { background:var(--tinta); color:var(--crema); padding:80px 40px 30px; }
+    footer h2 { font-size:clamp(48px, 12vw, 160px); line-height:1; margin:0 0 30px; font-weight:200; letter-spacing:-.03em; }
+    footer a.mail { color:var(--coral); font-size:clamp(18px, 3vw, 32px); }
+    footer small { display:block; margin-top:60px; font-size:12px; letter-spacing:2px; opacity:.6; }
+
+    .oculto { opacity:0; transform:translateY(30px); transition:opacity .8s, transform .8s; }
+    .visible { opacity:1; transform:none; }
+    .servicio.oculto { transition: opacity .8s, transform .8s, padding .3s, color .3s; }
+
+    @media (max-width:800px) {
+      header { padding:14px 20px; }
+            .burger { display:flex; }
+      nav { position:absolute; top:100%; left:0; right:0; background:var(--crema); display:flex; flex-direction:column; padding:10px 20px 20px; border-bottom:1px solid rgba(0,0,0,.1); opacity:0; visibility:hidden; transform:translateY(-10px); transition:opacity .3s, transform .3s, visibility .3s; }
+      nav.abierto { opacity:1; visibility:visible; transform:none; }
+      nav a { margin:0; padding:14px 0; font-size:18px; border-bottom:1px solid rgba(0,0,0,.08); }
+      section { padding:60px 20px; }
+      .hero h1 { font-size:27vw; }
+      .hero img { width:70vw; }
+      .hero p { left:20px; }
+      .hero .scroll { display:none; }
+      .servicio { flex-wrap:wrap; gap:10px; }
+      .grilla { grid-template-columns:repeat(2, 1fr); }
+      footer { padding:60px 20px 30px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="aviso">Estudio de diseño digital · La Plata, Argentina</div>
+
+  <header>
+    <a href="#" class="logo">BLOOM</a>
+    <nav>
+      <a href="#servicios">Servicios</a>
+      <a href="#trabajos">Trabajos</a>
+      <a href="#nosotros">Nosotros</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <button class="burger" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span></button>
+  </header>
+
+  <div class="hero">
+    <h1>BLOOM</h1>
+    <img src="coral.png" alt="Coral de colores floreciendo">
+    <p>Tu idea florece</p>
+    <p class="scroll">Scroll ↓</p>
+  </div>
+
+  <div class="cinta">
+    <div>Identidad de marca | Diseño web | Diseño gráfico | Redes sociales | Identidad de marca | Diseño web | Diseño gráfico | Redes sociales |&nbsp;</div>
+    <div>Identidad de marca | Diseño web | Diseño gráfico | Redes sociales | Identidad de marca | Diseño web | Diseño gráfico | Redes sociales |&nbsp;</div>
+  </div>
+
+  <section id="servicios">
+    <p class="etiqueta">Servicios</p>
+    <div class="servicio oculto"><span>01</span><h2>IDENTIDAD DE MARCA</h2><p>Logos, paleta de colores y tipografías que cuentan quién sos.</p></div>
+    <div class="servicio oculto"><span>02</span><h2>DISEÑO WEB</h2><p>Páginas a medida que se ven bien en la compu y en el celular.</p></div>
+    <div class="servicio oculto"><span>03</span><h2>DISEÑO GRÁFICO</h2><p>Piezas para redes, folletos y packaging.</p></div>
+  </section>
+
+  <section id="trabajos">
+    <p class="etiqueta">Trabajos seleccionados</p>
+    <div class="grilla">
+      <div class="proyecto oculto"><div class="foto"><img src="wasabarber1.jpg" alt="Nico Wasabarber"></div><h3>Nico Wasabarber</h3><small>Identidad de marca · Packaging</small></div>
+      <div class="proyecto oculto"><div class="foto"><img src="wasabarber2.jpg" alt="Nico Wasabarber"></div><h3>Nico Wasabarber</h3><small>Logotipo</small></div>
+      <div class="proyecto oculto"><div class="foto"><img src="ians.jpg" alt="Ian's"></div><h3>Ian's</h3><small>Lettering · Tipografía</small></div>
+      <div class="proyecto oculto"><div class="foto"><img src="marcoluca.jpg" alt="Marco Luca"></div><h3>Marco Luca</h3><small>Tipografía · Portada</small></div>
+    </div>
+  </section>
+
+  <section id="nosotros" class="nosotros">
+    <p class="etiqueta">Nosotros</p>
+    <p class="oculto">Somos un estudio de diseño digital de La Plata. Ayudamos a negocios y emprendedores a <em>florecer</em>, desde el logo hasta la página web.</p>
+  </section>
+
+  <footer id="contacto">
+    <h2>Hablemos</h2>
+    <a class="mail" href="mailto:bloomstvdio@gmail.com">bloomstvdio@gmail.com</a>
+    <small>© 2026 BLOOM · Diseñado en La Plata</small>
+  </footer>
+
+  <script>
+    const items = document.querySelectorAll(".oculto");
+    const observador = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add("visible"); }
+      });
+    }, { threshold: 0.15 });
+    items.forEach(function (el) { observador.observe(el); });
+
+    const burger = document.querySelector(".burger");
+    const menu = document.querySelector("nav");
+    burger.addEventListener("click", function () {
+      const abierto = menu.classList.toggle("abierto");
+      burger.classList.toggle("abierto", abierto);
+      burger.setAttribute("aria-expanded", abierto);
+    });
+    menu.querySelectorAll("a").forEach(function (a) {
+      a.addEventListener("click", function () {
+        menu.classList.remove("abierto");
+        burger.classList.remove("abierto");
+        burger.setAttribute("aria-expanded", "false");
+      });
+    });
+  </script>
+</body>
+</html>

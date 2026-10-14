@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>BLOOM | Estudio de diseño</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root {
+      --coral: #ff6b5e;
+      --oscuro: #222222;
+      --claro: #fffaf8;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      background-color: var(--claro);
+      color: var(--oscuro);
+      font-family: Verdana, sans-serif;
+      margin: 0;
+    }
+    h1 {
+      font-size: 56px;
+      font-weight: normal;
+      margin: 0 0 20px 0;
+    }
+    h2 {
+      font-size: 32px;
+      font-weight: normal;
+      margin-top: 0;
+    }
+    p {
+      font-size: 18px;
+      line-height: 1.6;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+    }
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      letter-spacing: 3px;
+      color: var(--coral);
+    }
+    nav a {
+      color: var(--oscuro);
+      text-decoration: none;
+      margin-left: 24px;
+    }
+    nav a:hover {
+      color: var(--coral);
+    }
+    section {
+      padding: 60px 40px;
+    }
+    .inicio {
+      text-align: center;
+      padding: 100px 40px;
+    }
+    .inicio span {
+      color: var(--coral);
+    }
+    .boton {
+      display: inline-block;
+      background-color: var(--coral);
+      color: white;
+      padding: 14px 32px;
+      text-decoration: none;
+      border-radius: 30px;
+      font-size: 18px;
+    }
+    .boton:hover {
+      background-color: #e5493c;
+    }
+    .tarjetas {
+      display: flex;
+      gap: 30px;
+    }
+    .tarjeta {
+      flex: 1;
+      background-color: white;
+      border-top: 4px solid var(--coral);
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    .tarjeta h3 {
+      margin-top: 0;
+    }
+    .grilla {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .grilla img {
+      border-radius: 12px;
+      width: 100%;
+    }
+    footer {
+      background-color: var(--oscuro);
+      color: white;
+      text-align: center;
+      padding: 30px;
+    }
+    footer a {
+      color: var(--coral);
+    }
+
+    @media (max-width: 700px) {
+      header {
+        flex-direction: column;
+        gap: 10px;
+        padding: 20px;
+      }
+      nav a {
+        margin: 0 8px;
+        font-size: 14px;
+      }
+      section {
+        padding: 40px 20px;
+      }
+      .inicio {
+        padding: 60px 20px;
+      }
+      h1 {
+        font-size: 36px;
+      }
+      .tarjetas {
+        flex-direction: column;
+      }
+      .grilla {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">BLOOM</div>
+    <nav>
+      <a href="#servicios">Servicios</a>
+      <a href="#trabajos">Trabajos</a>
+      <a href="#nosotros">Nosotros</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="inicio">
+      <h1>Hacemos <span>florecer</span> tu marca</h1>
+      <p>Diseñamos la imagen y la presencia digital de tu negocio.</p>
+      <a href="#trabajos" class="boton">Ver trabajos</a>
+    </section>
+
+    <section id="servicios">
+      <h2>Servicios</h2>
+      <div class="tarjetas">
+        <div class="tarjeta">
+          <h3>Identidad de marca</h3>
+          <p>Logos, paleta de colores y tipografías que cuentan quién sos.</p>
+        </div>
+        <div class="tarjeta">
+          <h3>Diseño web</h3>
+          <p>Páginas a medida que se ven bien en la computadora y en el celular.</p>
+        </div>
+        <div class="tarjeta">
+          <h3>Diseño gráfico y redes</h3>
+          <p>Piezas para redes sociales, folletos y packaging.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="trabajos">
+      <h2>Trabajos</h2>
+      <div class="grilla">
+        <img src="https://picsum.photos/id/1015/600/400" alt="Proyecto 1">
+        <img src="https://picsum.photos/id/1025/600/400" alt="Proyecto 2">
+        <img src="https://picsum.photos/id/1035/600/400" alt="Proyecto 3">
+        <img src="https://picsum.photos/id/1043/600/400" alt="Proyecto 4">
+        <img src="https://picsum.photos/id/1050/600/400" alt="Proyecto 5">
+        <img src="https://picsum.photos/id/1062/600/400" alt="Proyecto 6">
+      </div>
+    </section>
+
+    <section id="nosotros">
+      <h2>Nosotros</h2>
+      <p>Somos un estudio de diseño digital de La Plata. Trabajamos con negocios y emprendedores para crear marcas coherentes, desde el logo hasta la página web.</p>
+    </section>
+  </main>
+
+  <footer id="contacto">
+    <h2>Hablemos</h2>
+    <p>Escribinos a <a href="mailto:hola@bloom.com">hola@bloom.com</a></p>
+  </footer>
+</body>
+</html>
